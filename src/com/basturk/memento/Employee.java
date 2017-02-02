@@ -1,15 +1,12 @@
 package com.basturk.memento;
 
-import java.io.Serializable;
-
 /**
  * Created by basturk
  * Date: 02.02.2017.
  */
 
 // originator
-@SuppressWarnings("serial")
-public class Employee implements Serializable {
+public class Employee {
 
     private String name;
     private String address;
@@ -43,4 +40,14 @@ public class Employee implements Serializable {
     public String toString() {
         return name + " : " + phone;
     }
+
+    public EmployeeMemento save() {
+        return new EmployeeMemento(name, phone);
+    }
+
+    public void revert(EmployeeMemento emp) {
+        this.name = emp.getName();
+        this.phone = emp.getPhone();
+    }
+
 }
